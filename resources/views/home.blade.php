@@ -70,7 +70,7 @@
         }
         .bank-dashboard > h2 {
             grid-column: 1 / -1;
-            border-bottom-color: #ff7043;
+            border-bottom-color: #29b6f6;
         }
 
         .section {
@@ -128,10 +128,11 @@
         li:last-child { border-bottom: none; }
         li .user-info { flex-grow: 1; margin-right: 15px; word-break: break-word; }
 
-        input, select, button { padding: 10px 12px; margin: 5px 5px 10px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-        input:focus, select:focus { border-color: #6a1b9a; outline: none; box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); }
-        input[type="text"], input[type="email"], input[type="password"] { min-width: 180px; flex-grow: 1; }
-        input[type="number"] { width: 130px; }
+        input, select, button { padding: 10px 12px; margin: 0; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        input:focus, select:focus { border-color: #6a1b9a; outline: none; box-shadow: 0 0 0 2px rgba(106, 27, 154, 0.2); }
+        input[type="text"], input[type="email"], input[type="password"] { width: 100%; }
+        input[type="number"] { width: 150px; }
+        select { width: 100%; }
 
         button { background-color: #6a1b9a; color: #ffffff; cursor: pointer; border: none; font-weight: 500; transition: background-color 0.3s ease; }
         button:hover { background-color: #8242aa; }
@@ -141,14 +142,16 @@
 
         .alert { background-color: #dff0d8; color: #3c763d; padding: 15px 20px; border-radius: 6px; margin-bottom: 25px; border: 1px solid #c3e6cb; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
         form { margin-bottom: 10px; }
-        form.inline { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-left: 0; margin-bottom: 0; }
-        form.inline input, form.inline select, form.inline button { margin: 0; }
+
+        form.inline { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-left: 0; margin-bottom: 0; }
+        form.inline input, form.inline select, form.inline button { margin: 0; flex-grow: 1; min-width: 120px; }
         form.inline input[type="text"], form.inline input[type="email"] { min-width: 150px; }
-        form.inline select { min-width: 100px; }
+        form.inline select { min-width: 100px; flex-grow: 0.5; }
+        form.inline button { flex-grow: 0; }
 
         .form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
-        .form-group label { margin-bottom: 5px; font-weight: 500; font-size: 14px; }
-        select { min-width: 180px; }
+        .form-group label { margin-bottom: 5px; font-weight: 500; font-size: 14px; color: #6a1b9a; }
+        .form-group input, .form-group select { width: 100%; }
 
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-bottom: 15px; }
         .stat-item { background-color: #f5f7fa; padding: 15px; border-radius: 6px; text-align: center; border: 1px solid #eaeaea; }
@@ -164,11 +167,14 @@
         tbody tr:nth-of-type(even) { background-color: #fbfcfd; }
         tbody tr:hover { background-color: #f1f8fd; }
 
-        .actions-group { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
-        @media (min-width: 768px) {
-            .actions-group { flex-direction: row; align-items: center; gap: 5px; }
-            li { align-items: flex-start; }
-            li .user-info { margin-bottom: 5px; }
+        .actions-group { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .actions-group form.inline { width: 100%; }
+
+        @media (min-width: 992px) {
+            li { align-items: center; }
+            li .user-info { margin-bottom: 0; }
+            .actions-group { flex-wrap: nowrap; }
+            .actions-group form.inline { width: auto; }
             form.inline input, form.inline select { margin-bottom: 0; }
         }
         .actions-group form { margin-bottom: 0; }
@@ -176,7 +182,7 @@
         .logout-button { position: absolute; top: 25px; right: 30px; z-index: 10; }
 
         @media print {
-            html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; height: auto !important; overflow: visible !important; }
+            html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; height: auto !important; overflow: visible !important; font-size: 10pt; }
             body * { visibility: hidden; }
 
             #print-area, #print-area *, #print-area-bank, #print-area-bank *, #print-area-siswa, #print-area-siswa * { visibility: visible !important; }
@@ -185,14 +191,16 @@
 
             .section:has(#print-area), .section:has(#print-area-bank), .section:has(#print-area-siswa) { visibility: visible !important; display: block !important; position: static !important; border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; width: 100% !important; page-break-inside: avoid; }
 
-            .section:has(#print-area) h3, .section:has(#print-area-bank) h3, .section:has(#print-area-siswa) h3, .section:has(#print-area-siswa) h2 { display: block !important; visibility: visible !important; text-align: center !important; margin-top: 10pt !important; margin-bottom: 1.5rem !important; font-size: 16pt !important; font-weight: 600 !important; color: #000 !important; width: 100% !important; }
+            .section:has(#print-area) h3, .section:has(#print-area-bank) h3, .section:has(#print-area-siswa) h3, .section:has(#print-area-siswa) h2 { display: block !important; visibility: visible !important; text-align: center !important; margin-top: 10pt !important; margin-bottom: 1.5rem !important; font-size: 14pt !important; font-weight: 600 !important; color: #000 !important; width: 100% !important; border-bottom: none !important; padding-bottom: 0 !important; }
+             .section:has(#print-area-siswa) h2 { font-size: 16pt !important; }
 
-            table { visibility: visible !important; box-shadow: none !important; border: 1px solid #ccc !important; font-size: 12pt !important; margin-top: 0 !important; width: 100% !important; border-collapse: collapse !important; }
-            th, td { visibility: visible !important; padding: 8px !important; border: 1px solid #ccc !important; color: #000 !important; text-align: left !important; }
-            thead tr { visibility: visible !important; background-color: #eee !important; color: #000 !important; }
+            table { visibility: visible !important; box-shadow: none !important; border: 1px solid #ccc !important; font-size: 10pt !important; margin-top: 0 !important; width: 100% !important; border-collapse: collapse !important; }
+            th, td { visibility: visible !important; padding: 6px 8px !important; border: 1px solid #ccc !important; color: #000 !important; text-align: left !important; word-wrap: break-word; }
+            thead tr { visibility: visible !important; background-color: #eee !important; color: #000 !important; font-weight: bold; }
             tbody tr { visibility: visible !important; background-color: #ffffff !important; }
             tbody tr:nth-of-type(even) { background-color: #f9f9f9 !important; }
-            tbody tr td:last-child, tbody tr td:nth-last-child(2) { text-align: right !important; }
+            td:nth-last-child(n+1):nth-last-child(-n+2) { text-align: right !important; }
+            td:nth-child(2), td:nth-child(3) { white-space: nowrap; }
 
             .container, .dashboard-content { visibility: visible !important; margin: 0 !important; padding: 0 !important; border: none !important; box-shadow: none !important; background: none !important; }
 
@@ -217,6 +225,8 @@
                 height: 0 !important;
                 overflow: hidden !important;
                 border: none !important;
+                position: absolute;
+                left: -9999px;
             }
         }
     </style>
@@ -233,7 +243,7 @@
             </div>
         @endif
         @if (Auth::user())
-            <form action="{{ route('logout') }}" method="POST" class="logout-button">
+            <form action="{{ route('logout') }}" method="POST" class="logout-button no-print">
                 @csrf
                 <button type="submit" class="btn-danger btn-small">LOGOUT</button>
             </form>
@@ -253,15 +263,27 @@
                         <h3>Tambah Pengguna Baru</h3>
                         <form action="{{ route('users.store') }}" method="POST">
                             @csrf
-                            <input type="text" name="name" placeholder="Nama" required>
-                            <input type="email" name="email" placeholder="Email" required>
-                            <input type="password" name="password" placeholder="Password" required>
-                            <select name="role" required>
-                                <option value="" disabled selected>Pilih Role</option>
-                                <option value="siswa">Siswa</option>
-                                <option value="bank">Bank</option>
-                                <option value="admin">Admin</option>
-                            </select>
+                            <div class="form-group">
+                                <label for="admin_create_name">Nama</label>
+                                <input id="admin_create_name" type="text" name="name" placeholder="Nama" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="admin_create_email">Email</label>
+                                <input id="admin_create_email" type="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                 <label for="admin_create_password">Password</label>
+                                <input id="admin_create_password" type="password" name="password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                 <label for="admin_create_role">Role</label>
+                                <select id="admin_create_role" name="role" required>
+                                    <option value="" disabled selected>Pilih Role</option>
+                                    <option value="siswa">Siswa</option>
+                                    <option value="bank">Bank</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
                             <button type="submit">Tambah Pengguna</button>
                         </form>
                     </div>
@@ -274,7 +296,7 @@
                                         {{ $u->name }} ({{ $u->email }}) <br> <strong>Role:</strong> {{ ucfirst($u->role) }}
                                     </div>
                                     <div class="actions-group">
-                                        <form action="{{ route('users.update', $u->id) }}" method="POST" class="inline">
+                                        <form action="{{ route('users.update', $u->id) }}" method="POST">
                                             @csrf @method('PUT')
                                             <input type="text" name="name" value="{{ $u->name }}" required title="Nama">
                                             <input type="email" name="email" value="{{ $u->email }}" required title="Email">
@@ -283,12 +305,16 @@
                                                 <option value="bank" {{ $u->role == 'bank' ? 'selected' : '' }}>Bank</option>
                                                 <option value="admin" {{ $u->role == 'admin' ? 'selected' : '' }}>Admin</option>
                                             </select>
-                                            <button type="submit" class="btn-small">Update</button>
+
+                                            <div style="margin-top: 10px;">
+                                            <button type="submit" class="btn-small" style="display: inline-block;">Update</button>
                                         </form>
-                                        <form action="{{ route('users.destroy', $u->id) }}" method="POST" class="inline">
-                                            @csrf @method('DELETE')
-                                            <button type="submit" class="btn-danger btn-small" onclick="return confirm('Yakin ingin menghapus pengguna {{ $u->name }}?')">Hapus</button>
-                                        </form>
+                                                <form action="{{ route('users.destroy', $u->id) }}" method="POST" style="display: inline-block; margin-left: 5px;">
+                                                    @csrf @method('DELETE')
+                                                    <button type="submit" class="btn-danger btn-small" onclick="return confirm('Yakin ingin menghapus pengguna {{ $u->name }}?')">Hapus</button>
+                                                </form>
+                                            </div>
+
                                     </div>
                                 </li>
                             @endforeach
@@ -329,21 +355,47 @@
                          <h3>Ringkasan Bank</h3>
                          <div class="stats-grid">
                             <div class="stat-item"><strong>Rp{{ number_format($saldo ?? 0, 0, ',', '.') }}</strong><span>Saldo Bank</span></div>
-                            <div class="stat-item"><strong>Rp{{ number_format($credit ?? 0, 0, ',', '.') }}</strong><span>Total Kredit</span></div>
-                            <div class="stat-item"><strong>Rp{{ number_format($debit ?? 0, 0, ',', '.') }}</strong><span>Total Debit</span></div>
-                            <div class="stat-item"><strong>{{ $nasabah ?? 0 }}</strong><span>Jumlah Nasabah</span></div>
+                            <div class="stat-item"><strong>Rp{{ number_format($credit ?? 0, 0, ',', '.') }}</strong><span>Total Kredit Disetujui</span></div>
+                            <div class="stat-item"><strong>Rp{{ number_format($debit ?? 0, 0, ',', '.') }}</strong><span>Total Debit Disetujui</span></div>
+                            <div class="stat-item"><strong>{{ $nasabah ?? 0 }}</strong><span>Jumlah Nasabah (Siswa)</span></div>
                             <div class="stat-item"><strong>{{ $allmutasi ?? 0 }}</strong><span>Transaksi Selesai</span></div>
                         </div>
                      </div>
                     <div class="section">
+                        <h3>Tambah Siswa Baru</h3>
+                        <form action="{{ route('users.store') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="bank_create_siswa_name">Nama Siswa</label>
+                                <input type="text" id="bank_create_siswa_name" name="name" placeholder="Nama Lengkap Siswa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bank_create_siswa_email">Email Siswa</label>
+                                <input type="email" id="bank_create_siswa_email" name="email" placeholder="Email Siswa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bank_create_siswa_password">Password Awal</label>
+                                <input type="password" id="bank_create_siswa_password" name="password" placeholder="Password Awal" required>
+                            </div>
+                            <input type="hidden" name="role" value="siswa">
+                            <button type="submit">Tambah Siswa</button>
+                        </form>
+                    </div>
+                    <div class="section">
                         <h3>Top Up Saldo Siswa</h3>
                         <form action="{{ route('wallet.topupForSiswa') }}" method="POST">
                             @csrf
-                            <select name="siswa_id" required>
-                                <option value="" disabled selected>Pilih Siswa</option>
-                                @foreach ($users as $u) <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->email }})</option> @endforeach
-                            </select>
-                            <input type="number" name="credit" min="5000" placeholder="Jumlah (min 5000)" required>
+                            <div class="form-group">
+                                <label for="bank_topup_siswa_id">Pilih Siswa</label>
+                                <select id="bank_topup_siswa_id" name="siswa_id" required>
+                                    <option value="" disabled selected>Pilih Siswa</option>
+                                    @foreach ($users as $u) <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->email }})</option> @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bank_topup_credit">Jumlah Top Up</label>
+                                <input id="bank_topup_credit" type="number" name="credit" min="5000" placeholder="Jumlah (min 5000)" required>
+                            </div>
                             <button type="submit">Top Up Siswa</button>
                         </form>
                     </div>
@@ -351,11 +403,17 @@
                         <h3>Tarik Saldo Siswa</h3>
                         <form action="{{ route('wallet.withdrawForSiswa') }}" method="POST">
                             @csrf
-                            <select name="siswa_id" required>
-                                 <option value="" disabled selected>Pilih Siswa</option>
-                                @foreach ($users as $u) <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->email }})</option> @endforeach
-                            </select>
-                            <input type="number" name="debit" min="5000" placeholder="Jumlah (min 5000)" required>
+                             <div class="form-group">
+                                <label for="bank_withdraw_siswa_id">Pilih Siswa</label>
+                                <select id="bank_withdraw_siswa_id" name="siswa_id" required>
+                                     <option value="" disabled selected>Pilih Siswa</option>
+                                    @foreach ($users as $u) <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->email }})</option> @endforeach
+                                </select>
+                             </div>
+                            <div class="form-group">
+                                <label for="bank_withdraw_debit">Jumlah Penarikan</label>
+                                <input id="bank_withdraw_debit" type="number" name="debit" min="5000" placeholder="Jumlah (min 5000)" required>
+                            </div>
                             <button type="submit">Tarik dari Siswa</button>
                         </form>
                     </div>
@@ -383,7 +441,7 @@
                         </ul>
                     </div>
                     <div class="section">
-                        <h3>Riwayat Transaksi Bank</h3>
+                        <h3>Riwayat Transaksi Bank (Disetujui)</h3>
                          <button onclick="printContent('print-area-bank')" class="no-print">Cetak Riwayat Bank</button>
                         <div id="print-area-bank">
                             <div class="table-container">
@@ -401,7 +459,7 @@
                                                 <td>{{ $m->user->name ?? 'N/A' }}</td>
                                             </tr>
                                          @empty
-                                            <tr><td colspan="5" style="text-align: center;">Tidak ada riwayat transaksi.</td></tr>
+                                            <tr><td colspan="5" style="text-align: center;">Tidak ada riwayat transaksi yang disetujui.</td></tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -453,15 +511,21 @@
                         <h3>Transfer ke Teman</h3>
                         <form action="{{ route('wallet.transfer') }}" method="POST">
                             @csrf
-                            <select name="recipient_id" required>
-                                <option value="" disabled selected>Pilih Penerima</option>
-                                @foreach($users as $u)
-                                    @if($u->id !== Auth::id())
-                                    <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->email }})</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            <input type="number" name="amount" min="5000" placeholder="Jumlah (min 5000)" required>
+                             <div class="form-group">
+                                <label for="siswa_transfer_recipient">Pilih Penerima</label>
+                                <select id="siswa_transfer_recipient" name="recipient_id" required>
+                                    <option value="" disabled selected>Pilih Penerima</option>
+                                    @foreach($users as $u)
+                                        @if($u->id !== Auth::id())
+                                        <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->email }})</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                             </div>
+                             <div class="form-group">
+                                <label for="siswa_transfer_amount">Jumlah Transfer</label>
+                                <input id="siswa_transfer_amount" type="number" name="amount" min="5000" placeholder="Jumlah (min 5000)" required>
+                             </div>
                             <button type="submit">Kirim Transfer</button>
                         </form>
                     </div>
@@ -471,9 +535,12 @@
                             <h3>Top Up Saldo</h3>
                             <form action="{{ route('wallet.topup') }}" method="POST">
                                 @csrf
-                                <input type="number" name="credit" min="5000" placeholder="Jumlah Top Up (min 5000)" required>
+                                <div class="form-group">
+                                    <label for="siswa_topup_credit">Jumlah Top Up</label>
+                                    <input id="siswa_topup_credit" type="number" name="credit" min="5000" placeholder="Jumlah Top Up (min 5000)" required>
+                                </div>
                                 <button type="submit">Request Top Up</button>
-                                <small style="display: block; margin-top: 5px; color: #777;">Top up memerlukan persetujuan Bank.</small>
+                                <small style="display: block; margin-top: 10px; color: #777;">Top up memerlukan persetujuan Bank.</small>
                             </form>
                         </div>
 
@@ -481,9 +548,12 @@
                             <h3>Tarik Saldo</h3>
                             <form action="{{ route('wallet.withdraw') }}" method="POST">
                                 @csrf
-                                <input type="number" name="debit" min="5000" placeholder="Jumlah Penarikan (min 5000)" required>
+                                <div class="form-group">
+                                    <label for="siswa_withdraw_debit">Jumlah Penarikan</label>
+                                    <input id="siswa_withdraw_debit" type="number" name="debit" min="5000" placeholder="Jumlah Penarikan (min 5000)" required>
+                                </div>
                                 <button type="submit">Request Penarikan</button>
-                                <small style="display: block; margin-top: 5px; color: #777;">Penarikan memerlukan persetujuan Bank.</small>
+                                <small style="display: block; margin-top: 10px; color: #777;">Penarikan memerlukan persetujuan Bank.</small>
                             </form>
                         </div>
                     </div>
@@ -495,29 +565,43 @@
 
     <script>
         function printContent(elementId) {
-            const printArea = document.getElementById(elementId);
-            if (printArea) {
-                document.body.classList.add('printing');
+            document.body.classList.add('printing');
+
+            setTimeout(() => {
                 window.print();
-                setTimeout(() => {
-                     document.body.classList.remove('printing');
-                }, 500);
-            } else {
-                console.error('Print area not found:', elementId);
-            }
+                 setTimeout(() => {
+                      document.body.classList.remove('printing');
+                 }, 500);
+            }, 100);
         }
 
-        const deleteForms = document.querySelectorAll('form button.btn-danger');
-        deleteForms.forEach(button => {
-            if (!button.getAttribute('onclick')) {
-                 const form = button.closest('form');
-                 if (form && form.querySelector('input[name="_method"][value="DELETE"]') || button.textContent.toLowerCase().includes('hapus')) {
-                    button.addEventListener('click', function(event) {
-                        if (!confirm('Apakah Anda yakin ingin menghapus item ini?')) {
+        const deleteForms = document.querySelectorAll('form[method="POST"]');
+        deleteForms.forEach(form => {
+            const deleteMethodInput = form.querySelector('input[name="_method"][value="DELETE"]');
+            const deleteButton = form.querySelector('button.btn-danger');
+
+            if (deleteMethodInput && deleteButton) {
+                if (!deleteButton.getAttribute('onclick')) {
+                    deleteButton.addEventListener('click', function(event) {
+                        let confirmMessage = 'Apakah Anda yakin ingin menghapus item ini?';
+                        const nameInput = form.parentNode.querySelector('input[name="name"]');
+                        if (nameInput && nameInput.value) {
+                             confirmMessage = `Yakin ingin menghapus pengguna ${nameInput.value}?`;
+                        } else {
+                             const userInfoDiv = form.closest('li')?.querySelector('.user-info');
+                             if (userInfoDiv && userInfoDiv.textContent.includes('(')) {
+                                 const nameMatch = userInfoDiv.textContent.match(/^(.*?)\s+\(/);
+                                 if (nameMatch && nameMatch[1]) {
+                                     confirmMessage = `Yakin ingin menghapus pengguna ${nameMatch[1].trim()}?`;
+                                 }
+                             }
+                        }
+
+                        if (!confirm(confirmMessage)) {
                             event.preventDefault();
                         }
                     });
-                 }
+                }
             }
         });
     </script>
